@@ -1,0 +1,59 @@
+name: Albert's List Daily Script
+
+on:
+  schedule:
+    - cron: "0 22 * * 1-5"   # 3 PM PDT (Mar–Nov)
+    - cron: "0 23 * * 1-5"   # 3 PM PST (Nov–Mar)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "true = generate only, no email sent"
+        required: false
+        default: "false"
+
+jobs:
+  generate-and-send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Poppins fonts
+        run: |
+          mkdir -p /usr/share/fonts/truetype/google-fonts
+          cp fonts/Poppins-Bold.ttf    /usr/share/fonts/truetype/google-fonts/
+          cp fonts/Poppins-Medium.ttf  /usr/share/fonts/truetype/google-fonts/
+          cp fonts/Poppins-Regular.ttf /usr/share/fonts/truetype/google-fonts/
+          fc-cache -fv
+
+      - name: Restore dedupe log
+        uses: actions/cache@v4
+        with:
+          path: dedupe_log.json
+          key: dedupe-log-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: dedupe-log-${{ runner.os }}-
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run automation
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_USER:         solivagantlabs@gmail.com
+          SMTP_PASS:         ${{ secrets.SMTP_PASS }}
+          SMTP_HOST:         smtp.gmail.com
+          SMTP_PORT:         "587"
+          DRY_RUN:           ${{ github.event.inputs.dry_run || 'false' }}
+        run: python main.py
+
+      - name: Save dedupe log
+        uses: actions/cache@v4
+        if: always()
+        with:
+          path: dedupe_log.json
+          key: dedupe-log-${{ runner.os }}-${{ github.run_id }}
