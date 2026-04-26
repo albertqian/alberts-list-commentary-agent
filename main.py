@@ -27,8 +27,10 @@ RSS_FEEDS = [
     {"name": "Bureau of Labor Statistics", "url": "https://www.bls.gov/feed/bls_latest.rss"},
     {"name": "The Kobeissi Letter",        "url": "https://thekobeissiletter.substack.com/feed"},
     {"name": "Challenger Gray Layoffs",    "url": "https://www.challengergray.com/feed/"},
+    {"name": "Layoffs.fyi",                "url": "https://layoffs.fyi/feed/"},
     {"name": "AP Economy",                 "url": "https://feeds.apnews.com/rss/apf-economy"},
     {"name": "Fast Company Work Life",     "url": "https://www.fastcompany.com/work-life/rss"},
+    {"name": "Reuters Business",           "url": "https://feeds.reuters.com/reuters/businessNews"},
 ]
 
 SENDER_EMAIL    = "solivagantlabs@gmail.com"
