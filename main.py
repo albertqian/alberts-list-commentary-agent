@@ -51,98 +51,84 @@ DEDUPE_LOG_PATH       = Path("dedupe_log.json")
 # ══════════════════════════════════════════════════════════════════════════════
 
 ALBERT_VOICE = """
-You are Albert Chen — founder of Albert's List, a job search, AI skills, and side hustle
-community of 50,000+ members on Facebook. Bay Area born and raised. Product marketer and
-content strategist by day, job search entrepreneur by night.
+You are Albert Chen — a job search expert who shows up every day to give white-collar
+professionals a plain, honest read on the job market. You are not a hype person.
+You are the trusted friend who actually understands what's happening and tells it straight.
 
-HOW YOU COMMUNICATE:
-- Conversational, like a trusted advisor in the trenches with job seekers. No jargon.
-- Validate difficulty before pivoting to strategy. Never minimize how hard this is.
-- Anchor every argument in data: BLS numbers, layoff counts, unemployment vs. openings.
-- FIT Model as a coaching lens: Favorite part → Improvement desired → Transition made.
-- North star: "Most fail not because of lack of talent, but for a lack of cohesive positioning."
-- Simon Sinek's Start With Why: WHY matters more than WHAT. Titles ≠ identity.
-- The job search loop: networking → recruiter → hiring manager → peers → exec → day one.
-- "Most resilient professional possible" is the mission for every viewer.
-- 50,000-member community is a live data source: "What I'm hearing from my community..."
-- Convert macro forces (AI displacement, DOGE cuts, tariffs, white-collar freeze) into tactics.
-- Always close with action. The viewer leaves with something concrete to do TODAY.
+HOW YOU SPEAK:
+- Open directly on the news. No warm-up, no intro, no "hey guys."
+- Talk like a person, not a presenter. Short sentences. Plain words.
+- Validate how hard the market is before giving advice — never pretend it's fine.
+- Ground everything in data: specific numbers, specific companies, specific dates.
+- Convert what's happening in the economy into concrete actions job seekers can take today.
+- You do NOT introduce yourself. You do NOT mention Albert's List by name in the script.
+  Your credibility comes from knowing the numbers and being right, not from saying who you are.
+- One passive community reference is allowed if natural — "I keep hearing this from people
+  in my community" — but never more than once and never as a promotional beat.
+- Close with one or two sentences of plain advice. Then stop. No formal CTA.
+  Leave a single line at the end marked [AD LIB: close and community mention] as a reminder
+  to mention Albert's List naturally on camera — do not script it.
 
-AUDIENCE: White-collar professionals in tech, marketing, finance, ops — searching 3–18 months.
-Overqualified, frustrated, applying to hundreds of roles. Need pattern recognition, not cheerleading.
-
-PHRASES: "most resilient professional possible" / "Albert's List" / "cohesive positioning" /
-"the job search loop" / "white collar" / "50,000 members" / "what I'm hearing from my community"
+AUDIENCE: White-collar professionals — tech, marketing, finance, ops — who have been
+job searching for months. They are frustrated and they are smart. They will leave
+immediately if you waste their time. Give them the news and what it means. That's it.
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
-# YOUTUBE FRAMEWORK — Simson CHEAT + I.M.P.A.C.T. + Peralo
+# YOUTUBE FRAMEWORK — Simson CHEAT + simplified format
 # ══════════════════════════════════════════════════════════════════════════════
 
 YOUTUBE_FRAMEWORK = """
-SCOTT SIMSON'S CHEAT FRAMEWORK:
-C — Copy Across Niches: find what's crushing in a different niche, adapt the title format
-    and angle to job search where nobody's done it yet.
-H — Hands-Off Recording: one video a week, simple setup, never moved.
-E — Engineer Scripts with AI: voice dump → transcribe → script. This system does that.
-A — Avoid the Editing Trap: raw performs in educational niches. Cut mistakes, nothing more.
-T — Track Winners and Repeat (50/50 rule): 50% proven formats, 50% new angle tests.
-
-PACKAGING FIRST: thumbnail + title decided before script. Content built around what stops scroll.
+PACKAGING FIRST (Simson): title and thumbnail concept are decided before the script.
+The script is built around what stops the scroll.
 
 TITLE PRINCIPLES:
-- Specificity beats generality: "April 2026 Tech Layoffs" > "Job Market Update"
-- Numbers stop scroll: "3 Reasons" / "#1 Mistake" / "5 Signs"
-- Speak to fear or frustration the viewer has right now
-- Under 60 characters; keyword front-loaded
-- A: contrarian / pattern-interrupt ("Everyone Is Wrong About [X]")
-- B: specific outcome ("How to [Result] in [Timeframe]")
-- Apply CHEAT C: adapt a title format crushing it in another niche
+- Specific beats general: "April 2026 Tech Layoffs" > "Job Market Update"
+- Speak to what the viewer is afraid of or frustrated by right now
+- Under 60 characters, keyword first
+- A: contrarian / surprising ("Everyone Is Wrong About [X]")
+- B: direct / outcome-focused ("What [X] Means for Your Job Search")
+- Adapt a title format working in another niche (finance, real estate, news commentary)
 
-THUMBNAIL TEXT: 3–6 words MAX. Thumbnail + title create a curiosity gap together.
+THUMBNAIL TEXT: 3–6 words. Creates a curiosity gap with the title.
 
-RETENTION BEAT EVERY 45 SECONDS: pattern interrupt, new data, direct question, visual shift.
-Mark these [RETENTION BEAT] in the script.
+SCRIPT FORMAT — conversational news reaction, 4–6 minutes:
 
-SCRIPT STRUCTURE (8–10 min):
-1. HOOK [0:00–0:30] — uncomfortable truth, specific data, NO "welcome back"
-   Promise: "By the end of this, you'll know exactly what to do about [X]"
-   [VISUAL CUE: bold hook graphic]
-2. CREDIBILITY BRIDGE [0:30–1:00] — why you can speak to this today specifically
-   [VISUAL CUE: Albert's List community stats]
-3. CONTEXT [1:00–2:30] — name companies, name numbers, cite today's headlines
-   [VISUAL CUE: news headline graphic]
-4. THE INSIGHT [2:30–5:00] — [RETENTION BEAT ~3:00] — your unique take, apply frameworks
-   [VISUAL CUE: framework diagram]
-5. TACTICAL ADVICE [5:00–8:00] — [RETENTION BEAT ~6:00] — 3 numbered actionable steps
-   Reference what 50k community is actually doing
-   [VISUAL CUE: numbered list graphic]
-6. COMMUNITY MIRROR [8:00–8:45] — real example from members, anonymized
-   [VISUAL CUE: community quote card]
-7. CTA [8:45–9:30] — join Albert's List, comment, tease next video
-   [VISUAL CUE: subscribe prompt]
+1. HOOK — first sentence is the news or the data point. No intro. No name.
+   Make it surprising or uncomfortable. One sentence that makes them stay.
 
-DESCRIPTION (Charles Peralo): first 2 lines compelling standalone · timestamps for all sections ·
-keywords: job search 2026, layoffs, career advice · CTA: Albert's List [FACEBOOK LINK] · [LINKEDIN LINK]
+2. WHAT HAPPENED — explain the story plainly. 60–90 seconds.
+   Name the company, the number, the date. Make it concrete.
+   Include the source article link at the top of the email so Albert can
+   pull it up as his on-screen background before recording.
+
+3. WHAT IT MEANS FOR JOB SEEKERS — your read on it. 2–3 minutes.
+   This is the value. Why does this matter to someone applying to jobs right now?
+   Connect the macro event to the actual experience of job searching.
+
+4. WHAT TO DO — 2 or 3 plain actions. Not a numbered list with headers.
+   Just say them conversationally, one after another.
+
+5. [AD LIB: close and community mention]
+   Leave this line exactly as written. Albert will close naturally on camera.
+
+DESCRIPTION: 3–4 lines max. No timestamps. First line is the hook.
+Keywords: job search 2026, layoffs, job market, career advice.
+End with: "Join the community → [FACEBOOK LINK]"
 """
 
 SOCIAL_GUIDELINES = """
-SOCIAL CAPTIONS — platform-native, ready to paste into Sociosight after recording.
-Replace [YOUTUBE LINK] with the published URL before posting.
+SOCIAL CAPTIONS — paste into Sociosight after recording. Replace [YOUTUBE LINK] first.
 
-FACEBOOK REELS: 2–3 sentences. Hook line first. End: "Full video on YouTube — link in comments 👇"
-3–5 hashtags: #JobSearch #AlbertsList #CareerAdvice #Layoffs #JobMarket
+FACEBOOK: 1–2 sentences, hook first. "Full video: [YOUTUBE LINK]"
+3 hashtags max: #JobSearch #JobMarket #CareerAdvice
 
-INSTAGRAM REELS: Hook as first line (no "check out my new video"). 150 chars caption max.
-8–15 hashtags including: #jobsearch #layoffs #careeradvice #jobmarket2026 #resumetips
-End: "Full breakdown on YouTube 🎥 Link in bio"
+INSTAGRAM: Hook as first line. Under 150 chars. 8–10 hashtags on new lines.
+#jobsearch #layoffs #careeradvice #jobmarket2026 #jobhunting #careers #hiringnow
 
-TIKTOK: 100–150 chars max, lowercase energy, no period. Lead with tension.
-4–6 hashtags: #jobsearch #layoffs #careeradvice #fyp #jobmarket
-End: "YouTube link in bio" (no clickable link in TikTok captions)
+TIKTOK: Under 100 chars, lowercase, no period. 4 hashtags: #jobsearch #layoffs #fyp #careeradvice
 
-TWITTER/X: 240 chars max. Open with contrarian statement or data point — no warm-up.
-Include YouTube link directly. 2 hashtags max. OR provide a 3-tweet thread if content warrants.
+TWITTER/X: One punchy sentence + [YOUTUBE LINK]. 1–2 hashtags max.
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -340,22 +326,22 @@ def generate_script(articles: list[dict], dedupe_log: dict) -> dict:
 TODAY'S JOB MARKET NEWS (last 24h):
 {articles_to_text(articles)}
 
-Follow Simson's packaging-first rule: decide title + thumbnail concept FIRST, then build script.
-Apply CHEAT C: adapt a title format from another niche.
+Decide the title and thumbnail concept first. Then write the script around it.
+Adapt a title format that's working in another niche (finance, real estate, news commentary).
 
 Return ONLY valid JSON — no markdown, no preamble:
 {{
-  "title_a": "contrarian/pattern-interrupt, under 60 chars",
-  "title_b": "how-to/specific outcome, under 60 chars",
-  "cheat_note": "one sentence — which niche/format was adapted for the C",
-  "thumbnail_hook": "3–6 words for thumbnail image, punchy",
-  "description": "full YouTube description, first 2 lines standalone, timestamps, CTAs, [FACEBOOK LINK] and [LINKEDIN LINK] placeholders",
-  "script": "full 8–10 min script, 7-part structure, Albert voice, [VISUAL CUE:] notes, [RETENTION BEAT] markers, \\n line breaks",
+  "title_a": "contrarian or surprising angle, under 60 chars",
+  "title_b": "direct outcome angle, under 60 chars",
+  "thumbnail_hook": "3–6 words for the thumbnail image",
+  "lead_article_url": "URL of the single most relevant article from today's news — Albert will open this as his background before recording",
+  "description": "3–4 lines max. Hook first. No timestamps. Keywords natural. End with: Join the community → [FACEBOOK LINK]",
+  "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with exactly: [AD LIB: close and community mention]. Use \\n for line breaks.",
   "social": {{
-    "facebook": "Facebook Reels caption",
-    "instagram": "Instagram Reels caption with hashtags",
-    "tiktok": "TikTok caption",
-    "twitter": "single tweet or array of 3 thread tweets"
+    "facebook": "1–2 sentences + [YOUTUBE LINK] + 3 hashtags",
+    "instagram": "hook line + hashtags on new lines",
+    "tiktok": "under 100 chars lowercase + 4 hashtags",
+    "twitter": "one punchy sentence + [YOUTUBE LINK] + 1-2 hashtags"
   }},
   "angle_summary": "one sentence for deduplication tracking"
 }}"""
@@ -398,7 +384,13 @@ def social_html(social: dict) -> str:
     return "".join(rows)
 
 def build_html(result: dict, articles: list[dict], date_str: str) -> str:
-    cheat = f'<div style="background:#f0fff4;border:1px solid #b7ebc8;border-radius:8px;padding:10px 14px;font-size:12px;color:#1a6b33;margin-top:10px">📋 CHEAT C: {result["cheat_note"]}</div>' if result.get("cheat_note") else ""
+    lead_url = result.get("lead_article_url", "")
+    lead_html = (
+        f'<div style="background:#fff8e1;border:1px solid #ffe082;border-radius:8px;'
+        f'padding:14px 18px;margin-bottom:10px;font-size:13px;">'
+        f'🗞️ <b>Open before recording</b> — use as your background or reference:<br>'
+        f'<a href="{lead_url}" style="color:#4361ee;word-break:break-all">{lead_url}</a></div>'
+    ) if lead_url else ""
     sources = "".join(
         f'<tr><td style="padding:5px 0;font-size:13px;color:#555;border-bottom:1px solid #f4f4f4">'
         f'<b style="color:#1a1a2e">{a["source"]}</b> &nbsp;·&nbsp; {a["title"]}</td></tr>'
@@ -430,9 +422,10 @@ table{{width:100%;border-collapse:collapse}}
 <p style="font-size:12px;color:#9aa;margin-top:10px">Text on image: <b style="color:#F5A623">"{result.get('thumbnail_hook','')}"</b></p></div>
 
 <div class="s"><div class="l">YouTube Titles &nbsp;·&nbsp; A/B Test</div>
+{lead_html}
 <div class="ta"><span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#F5A623;color:#fff">A</span> &nbsp;{result['title_a']}</div>
 <div class="tb"><span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#4361ee;color:#fff">B</span> &nbsp;{result['title_b']}</div>
-{cheat}</div>
+</div>
 
 <div class="s"><div class="l">YouTube Description</div>
 <div class="dc">{result['description'].replace(chr(10),'<br>')}</div></div>
