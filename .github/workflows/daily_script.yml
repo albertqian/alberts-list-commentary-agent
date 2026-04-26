@@ -19,14 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Poppins fonts
-        run: |
-          mkdir -p /usr/share/fonts/truetype/google-fonts
-          cp fonts/Poppins-Bold.ttf    /usr/share/fonts/truetype/google-fonts/
-          cp fonts/Poppins-Medium.ttf  /usr/share/fonts/truetype/google-fonts/
-          cp fonts/Poppins-Regular.ttf /usr/share/fonts/truetype/google-fonts/
-          fc-cache -fv
-
       - name: Restore dedupe log
         uses: actions/cache@v4
         with:
