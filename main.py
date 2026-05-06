@@ -338,6 +338,7 @@ Return ONLY valid JSON — no markdown, no preamble:
   "thumbnail_hook": "3–6 words for the thumbnail image",
   "lead_article_url": "URL of the single most relevant article from today's news — Albert will open this as his background before recording",
   "description": "3–4 lines max. Hook first. No timestamps. Keywords natural. End with: Join the community → [FACEBOOK LINK]",
+  "short_script": "30–90 second script written for an AI avatar. One news item, one insight, one action. No filler, no intro, no sign-off. Reads as a direct statement to camera — tight, plain, complete. Use \\n for line breaks.",
   "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with exactly: [AD LIB: close and community mention]. Use \\n for line breaks.",
   "social": {{
     "facebook": "1–2 sentences + [YOUTUBE LINK] + 3 hashtags",
@@ -354,10 +355,47 @@ Return ONLY valid JSON — no markdown, no preamble:
         messages=[{"role": "user", "content": prompt}]
     )
     raw = msg.content[0].text.strip()
-    if raw.startswith("```"):
+
+    # Strip markdown fences if present
+    if "```" in raw:
         parts = raw.split("```")
         raw = parts[1].lstrip("json").strip() if len(parts) > 1 else raw
-    return json.loads(raw)
+
+    # Attempt 1: parse as-is
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        pass
+
+    # Attempt 2: extract the outermost {...} block and retry
+    try:
+        start = raw.index("{")
+        end   = raw.rindex("}") + 1
+        return json.loads(raw[start:end])
+    except (ValueError, json.JSONDecodeError):
+        pass
+
+    # Attempt 3: ask Claude to fix its own output
+    print("[WARN] JSON parse failed — asking Claude to repair response")
+    fix_msg = client.messages.create(
+        model="claude-opus-4-5",
+        max_tokens=5000,
+        messages=[
+            {"role": "user",    "content": prompt},
+            {"role": "assistant","content": raw},
+            {"role": "user",    "content": (
+                "Your response was not valid JSON. "
+                "Return the exact same content as a single valid JSON object. "
+                "Escape any apostrophes or quotes inside string values. "
+                "No markdown fences, no extra text."
+            )},
+        ]
+    )
+    fixed = fix_msg.content[0].text.strip()
+    if "```" in fixed:
+        parts = fixed.split("```")
+        fixed = parts[1].lstrip("json").strip() if len(parts) > 1 else fixed
+    return json.loads(fixed)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # EMAIL
@@ -432,7 +470,11 @@ table{{width:100%;border-collapse:collapse}}
 <div class="s"><div class="l">YouTube Description</div>
 <div class="dc">{result['description'].replace(chr(10),'<br>')}</div></div>
 
-<div class="s"><div class="l">Script &nbsp;·&nbsp; 8–10 min</div>
+<div class="s"><div class="l">AI Avatar Script &nbsp;·&nbsp; 30–90 sec</div>
+<div style="background:#f0f7ff;border:1px solid #c0d8f8;border-radius:10px;padding:20px;font-size:15px;line-height:1.9;color:#1a2a4a;font-weight:500">{result.get('short_script','').replace(chr(10),'<br>')}</div>
+</div>
+
+<div class="s"><div class="l">Full Script &nbsp;·&nbsp; 4–6 min</div>
 <div class="sc">{result['script'].replace(chr(10),'<br>')}</div></div>
 
 <div class="s"><div class="l">Social Captions &nbsp;·&nbsp; Ready for Sociosight</div>
