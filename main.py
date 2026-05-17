@@ -67,9 +67,10 @@ HOW YOU SPEAK:
   Your credibility comes from knowing the numbers and being right, not from saying who you are.
 - One passive community reference is allowed if natural — "I keep hearing this from people
   in my community" — but never more than once and never as a promotional beat.
-- Close with one or two sentences of plain advice. Then stop. No formal CTA.
-  Leave a single line at the end marked [AD LIB: close and community mention] as a reminder
-  to mention Albert's List naturally on camera — do not script it.
+- End every script with the sign-off written out in full on its own line, preceded by [SIGN-OFF]:
+  [SIGN-OFF]
+  That's your job market update for today. Follow Albert's List for daily news, and if you
+  want to go deeper — join us at our next live event. Link in the description.
 
 AUDIENCE: White-collar professionals — tech, marketing, finance, ops — who have been
 job searching for months. They are frustrated and they are smart. They will leave
@@ -111,7 +112,10 @@ SCRIPT FORMAT — conversational news reaction, 4–6 minutes:
 4. WHAT TO DO — 2 or 3 plain actions. Not a numbered list with headers.
    Just say them conversationally, one after another.
 
-5. [AD LIB: close and community mention]
+5. [SIGN-OFF]
+   Write out in full: "That's your job market update for today. Follow Albert's List for
+   daily news, and if you want to go deeper — join us at our next live event. Link in
+   the description."
    Leave this line exactly as written. Albert will close naturally on camera.
 
 DESCRIPTION: 3–4 lines max. No timestamps. First line is the hook.
@@ -338,8 +342,9 @@ Return ONLY valid JSON — no markdown, no preamble:
   "thumbnail_hook": "3–6 words for the thumbnail image",
   "lead_article_url": "URL of the single most relevant article from today's news — Albert will open this as his background before recording",
   "description": "3–4 lines max. Hook first. No timestamps. Keywords natural. End with: Join the community → [FACEBOOK LINK]",
-  "short_script": "30–90 second script written for an AI avatar. One news item, one insight, one action. No filler, no intro, no sign-off. Reads as a direct statement to camera — tight, plain, complete. Use \\n for line breaks.",
-  "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with exactly: [AD LIB: close and community mention]. Use \\n for line breaks.",
+  "short_script": "30–90 second script for AI avatar. One news item, one insight, one action. No filler, no intro. End with the sign-off: [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
+  "thinking_script": "15–30 second script written as visible thinking — not an announcement, not a presentation. Reads like Albert just noticed something and is working through it out loud. Start mid-thought: 'So I'm looking at this...' or 'Okay, this is interesting...' or 'Wait — this number doesn't add up...'. One observation. One implication for job seekers. No sign-off, no CTA — just the thought landing cleanly. Written to feel unscripted even though it is. Use \\n for line breaks.",
+  "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with: [SIGN-OFF]\\nThat's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
   "social": {{
     "facebook": "1–2 sentences + [YOUTUBE LINK] + 3 hashtags",
     "instagram": "hook line + hashtags on new lines",
@@ -472,6 +477,10 @@ table{{width:100%;border-collapse:collapse}}
 
 <div class="s"><div class="l">AI Avatar Script &nbsp;·&nbsp; 30–90 sec</div>
 <div style="background:#f0f7ff;border:1px solid #c0d8f8;border-radius:10px;padding:20px;font-size:15px;line-height:1.9;color:#1a2a4a;font-weight:500">{result.get('short_script','').replace(chr(10),'<br>')}</div>
+</div>
+
+<div class="s"><div class="l">Thinking Script &nbsp;·&nbsp; 15–30 sec &nbsp;·&nbsp; Avatar short-form</div>
+<div style="background:#f5f0ff;border:1px solid #d4b8f8;border-radius:10px;padding:20px;font-size:15px;line-height:1.9;color:#2a1a4a;font-weight:500;font-style:italic">{result.get('thinking_script','').replace(chr(10),'<br>')}</div>
 </div>
 
 <div class="s"><div class="l">Full Script &nbsp;·&nbsp; 4–6 min</div>
