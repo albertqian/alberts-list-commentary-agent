@@ -85,13 +85,21 @@ YOUTUBE_FRAMEWORK = """
 PACKAGING FIRST (Simson): title and thumbnail concept are decided before the script.
 The script is built around what stops the scroll.
 
-TITLE PRINCIPLES:
-- Specific beats general: "April 2026 Tech Layoffs" > "Job Market Update"
-- Speak to what the viewer is afraid of or frustrated by right now
+TITLE PRINCIPLES — based on Albert's actual top-performing videos:
+- Duration target for short script: 40–70 seconds (data shows this is the sweet spot)
+- ALWAYS include a named company, named figure, or specific dollar/headcount figure
+  — every bottom performer had none of these; every top performer had at least one
+- Winning title formulas (use these, in order of proven performance):
+    1. "The $[Amount] [Thing] Nobody's Talking About" — curiosity + specificity
+    2. "Why [Company]'s [Thing] Won't Help Your Job Search" — contrarian + named co
+    3. "[Group] Are Quietly [Doing X] (Not Just [Expected Group])" — demographic surprise
+    4. "[Company] Is [Verb]-ing [N] [People] (Here's the Catch)" — named co + paradox
+    5. "[Person]'s [Advice] Is Wrong for Job Seekers" — contrarian + named figure
+    6. "[X] Down [%] But You Can't Get Hired (Here's Why)" — paradox format
+    7. "[Company] Just [Verb]-ed. What It Means for Your Job Search" — news + impact
 - Under 60 characters, keyword first
-- A: contrarian / surprising ("Everyone Is Wrong About [X]")
-- B: direct / outcome-focused ("What [X] Means for Your Job Search")
-- Adapt a title format working in another niche (finance, real estate, news commentary)
+- A: use one of the winning formulas above
+- B: direct outcome ("What [X] Means for Job Seekers in [Month Year]")
 
 THUMBNAIL TEXT: 3–6 words. Creates a curiosity gap with the title.
 
@@ -233,7 +241,76 @@ def fetch_articles() -> list[dict]:
                 break
 
     print(f"[INFO] {len(articles)} articles fetched")
+
+    # Score and sort — highest relevance first
+    for a in articles:
+        a["score"] = score_article(a)
+    articles.sort(key=lambda x: x["score"], reverse=True)
+
+    for a in articles[:3]:
+        print(f"[INFO] Score {a['score']:>3}  {a['source']}: {a['title'][:70]}")
+
     return articles
+
+def score_article(article: dict) -> int:
+    """
+    Score each article by how likely it is to produce a high-view short.
+    Based on analysis of Albert's top-performing videos:
+    - Named companies and specific figures drive views
+    - Dollar amounts and headcounts drive views
+    - Abstract macro without a named entity kills performance
+    """
+    text  = (article["title"] + " " + article["summary"]).lower()
+    score = 0
+
+    # Named companies — strongest signal from data
+    companies = [
+        "google","microsoft","apple","amazon","meta","nvidia","salesforce",
+        "spacex","cisco","oracle","tesla","openai","anthropic","ibm","intel",
+        "boeing","walmart","jpmorgan","goldman","blackrock","uber","airbnb",
+        "linkedin","indeed","stripe","palantir","snowflake","cloudflare",
+        "workday","servicenow","zoom","slack","twitter","x.com","bytedance",
+        "tiktok","spotify","netflix","disney","ford","gm","ups","fedex",
+    ]
+    named_cos = [c for c in companies if c in text]
+    score += len(named_cos) * 3
+
+    # Named figures — Jensen Huang, Trump, Powell, etc. drive views
+    figures = ["trump","powell","jensen","musk","bezos","pichai","nadella",
+               "altman","zuckerberg","yellen","fed chair","ceo","cfo"]
+    score += sum(2 for f in figures if f in text)
+
+    # Specific dollar amounts or headcounts — "$110B", "1,000 jobs", "50%"
+    import re
+    if re.search(r'\$[\d,\.]+[bmk]?', text):           score += 2
+    if re.search(r'[\d,]+ (jobs|workers|employees|people|grads|cuts)', text): score += 2
+    if re.search(r'\d+%', text):                        score += 1
+
+    # High-signal topic categories based on winning videos
+    if any(w in text for w in ["layoff","laid off","cut","fired","job cut"]): score += 2
+    if any(w in text for w in ["hiring","hired","jobs added","openings"]):    score += 2
+    if any(w in text for w in ["ai","artificial intelligence"]) and \
+       any(w in text for w in ["job","hire","work","employ","replace"]):      score += 2
+    if any(w in text for w in ["salary","wage","pay","compensation","earn"]): score += 2
+    if any(w in text for w in ["merger","acquisition","ipo","deal","billion"]): score += 2
+
+    # Contrarian or paradox angle — "but", "won't", "actually", "nobody"
+    if any(w in text for w in ["but","won't","actually","nobody","quiet","catch",
+                                 "wrong","trap","fail","broken","paradox"]):  score += 1
+
+    # Demographic specificity — Men/Women video was #3
+    if any(w in text for w in ["men","women","gen z","millennial","boomer",
+                                 "young","graduate","entry"]):                score += 1
+
+    # Penalize abstract macro with no named entity
+    if not named_cos and any(w in text for w in
+        ["uncertainty","concern","worry","fear","sentiment","outlook",
+         "fed rate","interest rate","inflation","gdp","cpi"]):               score -= 2
+
+    # Penalize generic job search advice (no news hook)
+    if any(w in text for w in ["how to","tips","secrets","guide","steps"]):  score -= 1
+
+    return score
 
 def articles_to_text(articles: list[dict]) -> str:
     return "\n".join(
@@ -342,7 +419,7 @@ Return ONLY valid JSON — no markdown, no preamble:
   "thumbnail_hook": "3–6 words for the thumbnail image",
   "lead_article_url": "URL of the single most relevant article from today's news — Albert will open this as his background before recording",
   "description": "3–4 lines max. Hook first. No timestamps. Keywords natural. End with: Join the community → [FACEBOOK LINK]",
-  "short_script": "30–90 second script for AI avatar. One news item, one insight, one action. No filler, no intro. End with the sign-off: [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
+  "short_script": "40–70 second script for AI avatar — this is the proven sweet spot from performance data. One news item with a named company or specific figure, one insight, one action. No filler, no intro. End with the sign-off: [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
   "thinking_script": "15–30 second script written as visible thinking — not an announcement, not a presentation. Reads like Albert just noticed something and is working through it out loud. Start mid-thought: 'So I'm looking at this...' or 'Okay, this is interesting...' or 'Wait — this number doesn't add up...'. One observation. One implication for job seekers. No sign-off, no CTA — just the thought landing cleanly. Written to feel unscripted even though it is. Use \\n for line breaks.",
   "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with: [SIGN-OFF]\\nThat's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
   "social": {{
