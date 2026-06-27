@@ -82,53 +82,71 @@ immediately if you waste their time. Give them the news and what it means. That'
 # ══════════════════════════════════════════════════════════════════════════════
 
 YOUTUBE_FRAMEWORK = """
-PACKAGING FIRST (Simson): title and thumbnail concept are decided before the script.
-The script is built around what stops the scroll.
+THIS SYSTEM IS SHORTS-FIRST. Every output is built around a 40–70 second video.
+The thinking script (15–30s) is the secondary deliverable. There is no long-form script.
 
-TITLE PRINCIPLES — based on Albert's actual top-performing videos:
-- Duration target for short script: 40–70 seconds (data shows this is the sweet spot)
-- ALWAYS include a named company, named figure, or specific dollar/headcount figure
-  — every bottom performer had none of these; every top performer had at least one
-- Winning title formulas (use these, in order of proven performance):
-    1. "The $[Amount] [Thing] Nobody's Talking About" — curiosity + specificity
-    2. "Why [Company]'s [Thing] Won't Help Your Job Search" — contrarian + named co
-    3. "[Group] Are Quietly [Doing X] (Not Just [Expected Group])" — demographic surprise
-    4. "[Company] Is [Verb]-ing [N] [People] (Here's the Catch)" — named co + paradox
-    5. "[Person]'s [Advice] Is Wrong for Job Seekers" — contrarian + named figure
-    6. "[X] Down [%] But You Can't Get Hired (Here's Why)" — paradox format
-    7. "[Company] Just [Verb]-ed. What It Means for Your Job Search" — news + impact
-- Under 60 characters, keyword first
-- A: use one of the winning formulas above
-- B: direct outcome ("What [X] Means for Job Seekers in [Month Year]")
+═══ SIMSON'S PACKAGING RULE ════════════════════════════════════════════════════
+Title and thumbnail are decided BEFORE the script. The short is built around what
+stops the scroll, not the other way around. If the title isn't strong enough to
+make someone pause mid-scroll, the content is irrelevant.
 
-THUMBNAIL TEXT: 3–6 words. Creates a curiosity gap with the title.
+═══ TITLE PRINCIPLES — from Albert's actual performance data ════════════════════
+HARD RULE: Every title must contain a named company, named figure, OR specific
+dollar/headcount figure. This is not optional. Titles without these consistently
+underperform. Bottom performers have zero named entities. Top performers always have one.
 
-SCRIPT FORMAT — conversational news reaction, 4–6 minutes:
+Duration target: 40–70 seconds. Under 40s signals low value to the algorithm.
+Over 80s loses the audience before the point lands.
 
-1. HOOK — first sentence is the news or the data point. No intro. No name.
-   Make it surprising or uncomfortable. One sentence that makes them stay.
+Proven title formulas — use in order of performance:
+  1. "The $[Amount] [Thing] Nobody's Talking About"
+  2. "Why [Company]'s [Thing] Won't Help Your Job Search"
+  3. "[Group] Are Quietly [Doing X] (Not Just [Expected Group])"
+  4. "[Company] Is [Action]-ing [N] [People] (Here's the Catch)"
+  5. "[Person]'s [Advice] Is Wrong for Job Seekers"
+  6. "[X] Down [%] But You Can't Get Hired (Here's Why)"
+  7. "[Company] Just [Action]-ed. What It Means for Your Job Search"
 
-2. WHAT HAPPENED — explain the story plainly. 60–90 seconds.
-   Name the company, the number, the date. Make it concrete.
-   Include the source article link at the top of the email so Albert can
-   pull it up as his on-screen background before recording.
+Title A: use one of the formulas above, matched to today's lead story
+Title B: "What [Named Entity] Means for Job Seekers" — direct, no formula required
+Under 60 characters. Keyword first. Written to be read WITHOUT a description below it
+— Shorts viewers rarely read descriptions.
 
-3. WHAT IT MEANS FOR JOB SEEKERS — your read on it. 2–3 minutes.
-   This is the value. Why does this matter to someone applying to jobs right now?
-   Connect the macro event to the actual experience of job searching.
+═══ THUMBNAIL TEXT ══════════════════════════════════════════════════════════════
+3–6 words. Works as a standalone statement even without the title.
+Creates a curiosity gap — the thumbnail raises a question the title answers,
+or vice versa. Never redundant with the title.
 
-4. WHAT TO DO — 2 or 3 plain actions. Not a numbered list with headers.
-   Just say them conversationally, one after another.
+═══ SIMSON'S SHORTS HOOK RULE ══════════════════════════════════════════════════
+First sentence is the entire game. On Shorts, there is no patience — the viewer
+decides in under 2 seconds. The first sentence must be:
+- A specific, surprising fact ("Salesforce just hired 1,000 people and none of them
+  will last two years.")
+- A direct contradiction ("The job market added 175,000 jobs last month. You still
+  can't get hired. Here's why that makes sense.")
+- A provocative claim that demands resolution ("The Fed just did something that will
+  freeze hiring for 90 days and nobody in the career space is talking about it.")
+Never start with context. Never start with "so" or "today" as a warm-up.
+The fact IS the opening.
 
-5. [SIGN-OFF]
-   Write out in full: "That's your job market update for today. Follow Albert's List for
-   daily news, and if you want to go deeper — join us at our next live event. Link in
-   the description."
-   Leave this line exactly as written. Albert will close naturally on camera.
+═══ SHORTS SCRIPT STRUCTURE (40–70 seconds) ════════════════════════════════════
+1. HOOK [0:00–0:08] — one sentence. Specific fact or direct contradiction.
+2. WHAT HAPPENED [0:08–0:25] — 2–3 sentences. Named entity, number, date.
+   Concrete. No vague gestures at "the market."
+3. WHAT IT MEANS [0:25–0:50] — 2–3 sentences. Direct implication for job seekers.
+   One clear, actionable takeaway.
+4. [SIGN-OFF] — scripted, read directly.
 
-DESCRIPTION: 3–4 lines max. No timestamps. First line is the hook.
-Keywords: job search 2026, layoffs, job market, career advice.
-End with: "Join the community → [FACEBOOK LINK]"
+═══ THINKING SCRIPT STRUCTURE (15–30 seconds) ══════════════════════════════════
+Mid-thought open. Reads like Albert caught something and is working through it.
+Starters: "So I'm looking at this..." / "Wait — this number doesn't add up..." /
+"Okay, this is interesting..." / "Something nobody's mentioning about this..."
+One observation. One implication. No sign-off. Stops cleanly on the insight.
+Written to feel unscripted even though every word is chosen.
+
+DESCRIPTION: 2 lines only. Line 1 = the hook sentence from the script.
+Line 2 = "Join the community → [FACEBOOK LINK]"
+No timestamps. No keyword stuffing. Shorts descriptions barely get read.
 """
 
 SOCIAL_GUIDELINES = """
@@ -310,6 +328,10 @@ def score_article(article: dict) -> int:
     # Penalize generic job search advice (no news hook)
     if any(w in text for w in ["how to","tips","secrets","guide","steps"]):  score -= 1
 
+    # Hard penalize mock interview content — wrong format for shorts strategy
+    if any(w in text for w in ["mock interview","interview practice","interview feedback",
+                                "interview question","interview prep"]):      score -= 5
+
     return score
 
 def articles_to_text(articles: list[dict]) -> str:
@@ -414,14 +436,13 @@ Adapt a title format that's working in another niche (finance, real estate, news
 
 Return ONLY valid JSON — no markdown, no preamble:
 {{
-  "title_a": "contrarian or surprising angle, under 60 chars",
-  "title_b": "direct outcome angle, under 60 chars",
-  "thumbnail_hook": "3–6 words for the thumbnail image",
-  "lead_article_url": "URL of the single most relevant article from today's news — Albert will open this as his background before recording",
-  "description": "3–4 lines max. Hook first. No timestamps. Keywords natural. End with: Join the community → [FACEBOOK LINK]",
-  "short_script": "40–70 second script for AI avatar — this is the proven sweet spot from performance data. One news item with a named company or specific figure, one insight, one action. No filler, no intro. End with the sign-off: [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
-  "thinking_script": "15–30 second script written as visible thinking — not an announcement, not a presentation. Reads like Albert just noticed something and is working through it out loud. Start mid-thought: 'So I'm looking at this...' or 'Okay, this is interesting...' or 'Wait — this number doesn't add up...'. One observation. One implication for job seekers. No sign-off, no CTA — just the thought landing cleanly. Written to feel unscripted even though it is. Use \\n for line breaks.",
-  "script": "4–6 min conversational script, 5-part structure per the framework. Plain spoken sentences. End with: [SIGN-OFF]\\nThat's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
+  "title_a": "one of the 7 proven formulas, named entity required, under 60 chars",
+  "title_b": "What [Named Entity] Means for Job Seekers — direct, under 60 chars",
+  "thumbnail_hook": "3–6 words, standalone statement, curiosity gap with title",
+  "lead_article_url": "URL of the highest-scoring article — Albert opens this as background before recording",
+  "description": "2 lines only: hook sentence from short script on line 1, join community CTA on line 2",
+  "short_script": "PRIMARY DELIVERABLE. 40–70 seconds. Hook sentence first — specific fact or direct contradiction, no warm-up. What happened (named entity + number). What it means for job seekers. One action. [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
+  "thinking_script": "SECONDARY DELIVERABLE. 15–30 seconds. Mid-thought open. One observation working through to one implication. No sign-off. Stops on the insight. Use \\n for line breaks.",
   "social": {{
     "facebook": "1–2 sentences + [YOUTUBE LINK] + 3 hashtags",
     "instagram": "hook line + hashtags on new lines",
@@ -552,16 +573,13 @@ table{{width:100%;border-collapse:collapse}}
 <div class="s"><div class="l">YouTube Description</div>
 <div class="dc">{result['description'].replace(chr(10),'<br>')}</div></div>
 
-<div class="s"><div class="l">AI Avatar Script &nbsp;·&nbsp; 30–90 sec</div>
+<div class="s"><div class="l">Short Script &nbsp;·&nbsp; PRIMARY &nbsp;·&nbsp; 40–70 sec</div>
 <div style="background:#f0f7ff;border:1px solid #c0d8f8;border-radius:10px;padding:20px;font-size:15px;line-height:1.9;color:#1a2a4a;font-weight:500">{result.get('short_script','').replace(chr(10),'<br>')}</div>
 </div>
 
-<div class="s"><div class="l">Thinking Script &nbsp;·&nbsp; 15–30 sec &nbsp;·&nbsp; Avatar short-form</div>
+<div class="s"><div class="l">Thinking Script &nbsp;·&nbsp; SECONDARY &nbsp;·&nbsp; 15–30 sec</div>
 <div style="background:#f5f0ff;border:1px solid #d4b8f8;border-radius:10px;padding:20px;font-size:15px;line-height:1.9;color:#2a1a4a;font-weight:500;font-style:italic">{result.get('thinking_script','').replace(chr(10),'<br>')}</div>
 </div>
-
-<div class="s"><div class="l">Full Script &nbsp;·&nbsp; 4–6 min</div>
-<div class="sc">{result['script'].replace(chr(10),'<br>')}</div></div>
 
 <div class="s"><div class="l">Social Captions &nbsp;·&nbsp; Ready for Sociosight</div>
 <div class="sn">⚡ Record first, then paste these into Sociosight. Replace [YOUTUBE LINK] before posting.</div>
@@ -595,7 +613,7 @@ def send_email(result: dict, articles: list[dict], thumbnail_bytes: bytes):
         print("[DRY RUN] Subject:", subject)
         print("[DRY RUN] Title A:", result["title_a"])
         print("[DRY RUN] Thumbnail hook:", result.get("thumbnail_hook"))
-        print("[DRY RUN] Script preview:\n", result["script"][:400])
+        print("[DRY RUN] Short script preview:\n", result.get("short_script","")[:400])
         return
 
     with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as srv:
