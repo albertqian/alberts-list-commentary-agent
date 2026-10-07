@@ -43,7 +43,7 @@ SMTP_HOST         = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT         = int(os.environ.get("SMTP_PORT", "587"))
 DRY_RUN           = os.environ.get("DRY_RUN", "false").lower() == "true"
 
-NEWS_WINDOW_HOURS     = 24
+NEWS_WINDOW_HOURS     = 72   # 3-day window — analysis beats instant reaction
 MAX_ARTICLES_PER_FEED = 4
 MAX_TOTAL_ARTICLES    = 22
 DEDUPE_LOG_PATH       = Path("dedupe_log.json")
@@ -53,28 +53,38 @@ DEDUPE_LOG_PATH       = Path("dedupe_log.json")
 # ══════════════════════════════════════════════════════════════════════════════
 
 ALBERT_VOICE = """
-You are Albert Chen — a job search expert who shows up every day to give white-collar
-professionals a plain, honest read on the job market. You are not a hype person.
-You are the trusted friend who actually understands what's happening and tells it straight.
+You are Albert Chen — a job search expert who gives white-collar professionals a clear,
+honest read on what is actually happening in the job market. You are not a breaking news
+channel. You are the person who waits for the dust to settle and then tells people what
+it actually means for their search.
+
+Your positioning: analysis over reaction. By the time you cover something, the hot takes
+are already done. You are the one who explains what the story actually means now that
+we know how it played out. That is more valuable to a job seeker than a same-day reaction.
 
 HOW YOU SPEAK:
-- Open directly on the news. No warm-up, no intro, no "hey guys."
+- Open on the insight, not the event. Lead with what it means, not what happened.
+  Wrong: "Google just announced layoffs." Right: "Google's latest cut tells you
+  something specific about which roles are actually safe right now."
 - Talk like a person, not a presenter. Short sentences. Plain words.
 - Validate how hard the market is before giving advice — never pretend it's fine.
 - Ground everything in data: specific numbers, specific companies, specific dates.
-- Convert what's happening in the economy into concrete actions job seekers can take today.
+- The extra time means you can add one layer of context the instant takes missed —
+  a follow-up number, a pattern across multiple companies, a contrarian angle.
+  Use it. That is what makes this worth watching over the person who covered it first.
 - You do NOT introduce yourself. You do NOT mention Albert's List by name in the script.
   Your credibility comes from knowing the numbers and being right, not from saying who you are.
 - One passive community reference is allowed if natural — "I keep hearing this from people
   in my community" — but never more than once and never as a promotional beat.
 - End every script with the sign-off written out in full on its own line, preceded by [SIGN-OFF]:
   [SIGN-OFF]
-  That's your job market update for today. Follow Albert's List for daily news, and if you
-  want to go deeper — join us at our next live event. Link in the description.
+  That's your job market update. Follow Albert's List for analysis that actually helps
+  your search, and if you want to go deeper — join us at our next live event. Link in
+  the description.
 
 AUDIENCE: White-collar professionals — tech, marketing, finance, ops — who have been
-job searching for months. They are frustrated and they are smart. They will leave
-immediately if you waste their time. Give them the news and what it means. That's it.
+job searching for months. They are frustrated and they are smart. They have already seen
+the hot take. Give them the real read.
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -120,21 +130,25 @@ or vice versa. Never redundant with the title.
 ═══ SIMSON'S SHORTS HOOK RULE ══════════════════════════════════════════════════
 First sentence is the entire game. On Shorts, there is no patience — the viewer
 decides in under 2 seconds. The first sentence must be:
-- A specific, surprising fact ("Salesforce just hired 1,000 people and none of them
-  will last two years.")
+- A specific insight that reframes a story everyone already heard ("Everyone said
+  Google's layoffs were about cost. The numbers say something different.")
 - A direct contradiction ("The job market added 175,000 jobs last month. You still
   can't get hired. Here's why that makes sense.")
-- A provocative claim that demands resolution ("The Fed just did something that will
-  freeze hiring for 90 days and nobody in the career space is talking about it.")
+- A pattern across events that nobody connected yet ("Three companies cut the same
+  role in the last two weeks. Here's what that tells you.")
+- A contrarian take on a story that had a consensus reaction ("Everyone treated
+  Microsoft's hiring pause as bad news. For mid-career candidates it's actually
+  the opposite.")
 Never start with context. Never start with "so" or "today" as a warm-up.
-The fact IS the opening.
+The insight IS the opening. You are not breaking news — you are explaining it.
 
 ═══ SHORTS SCRIPT STRUCTURE (40–70 seconds) ════════════════════════════════════
-1. HOOK [0:00–0:08] — one sentence. Specific fact or direct contradiction.
-2. WHAT HAPPENED [0:08–0:25] — 2–3 sentences. Named entity, number, date.
-   Concrete. No vague gestures at "the market."
-3. WHAT IT MEANS [0:25–0:50] — 2–3 sentences. Direct implication for job seekers.
-   One clear, actionable takeaway.
+1. HOOK [0:00–0:08] — one sentence. Lead with the insight, not the event.
+   What does this story actually mean, now that the dust has settled?
+2. WHAT ACTUALLY HAPPENED [0:08–0:25] — 2–3 sentences. Named entity, number, date.
+   Include one detail or follow-up data point the instant takes missed.
+3. WHAT IT MEANS FOR YOUR SEARCH [0:25–0:50] — 2–3 sentences. Direct implication.
+   One clear, actionable takeaway the viewer can use this week.
 4. [SIGN-OFF] — scripted, read directly.
 
 ═══ THINKING SCRIPT STRUCTURE (15–30 seconds) ══════════════════════════════════
@@ -144,9 +158,13 @@ Starters: "So I'm looking at this..." / "Wait — this number doesn't add up..."
 One observation. One implication. No sign-off. Stops cleanly on the insight.
 Written to feel unscripted even though every word is chosen.
 
-DESCRIPTION: 2 lines only. Line 1 = the hook sentence from the script.
-Line 2 = "Join the community → [FACEBOOK LINK]"
-No timestamps. No keyword stuffing. Shorts descriptions barely get read.
+DESCRIPTION: 4–6 lines. Written for someone who watched the short and wants more context.
+Line 1 = the hook sentence from the script — the specific fact or contradiction that opened the video.
+Line 2 = 1–2 sentences expanding on what the video covered. Name the company, figure, or number.
+Line 3 = one concrete action the viewer can take today based on what was in the video.
+Line 4 = blank line for breathing room.
+Line 5 = "Join the community → https://www.facebook.com/groups/125930820922472/"
+No timestamps. No keyword stuffing. Write it for a person, not an algorithm.
 """
 
 SOCIAL_GUIDELINES = """
@@ -231,10 +249,10 @@ def fetch_articles() -> list[dict]:
         if len(articles) >= MAX_TOTAL_ARTICLES:
             break
 
-    # Monday / thin-news fallback: widen to 72h
+    # Thin-news fallback: widen to 5 days
     if len(articles) < 5:
-        print("[INFO] Thin news day — widening to 72h")
-        fallback = (datetime.datetime.utcnow() - datetime.timedelta(hours=72)).date()
+        print("[INFO] Thin news day — widening to 120h")
+        fallback = (datetime.datetime.utcnow() - datetime.timedelta(hours=120)).date()
         for feed_cfg in RSS_FEEDS:
             try:
                 for entry in feedparser.parse(feed_cfg["url"]).entries[:3]:
@@ -440,7 +458,7 @@ Return ONLY valid JSON — no markdown, no preamble:
   "title_b": "What [Named Entity] Means for Job Seekers — direct, under 60 chars",
   "thumbnail_hook": "3–6 words, standalone statement, curiosity gap with title",
   "lead_article_url": "URL of the highest-scoring article — Albert opens this as background before recording",
-  "description": "2 lines only: hook sentence from short script on line 1, join community CTA on line 2",
+  "description": "4-6 lines: hook sentence on line 1, 1-2 sentences expanding on what was covered (named entity + number) on line 2, one concrete action the viewer can take today on line 3, blank line, then 'Join the community → https://www.facebook.com/groups/125930820922472/' as the final line",
   "short_script": "PRIMARY DELIVERABLE. 40–70 seconds. Hook sentence first — specific fact or direct contradiction, no warm-up. What happened (named entity + number). What it means for job seekers. One action. [SIGN-OFF] That's your job market update for today. Follow Albert's List for daily news, and if you want to go deeper — join us at our next live event. Link in the description. Use \\n for line breaks.",
   "thinking_script": "SECONDARY DELIVERABLE. 15–30 seconds. Mid-thought open. One observation working through to one implication. No sign-off. Stops on the insight. Use \\n for line breaks.",
   "social": {{
@@ -558,7 +576,7 @@ body{{font-family:-apple-system,Helvetica,Arial,sans-serif;background:#eef0f4}}
 table{{width:100%;border-collapse:collapse}}
 </style></head><body><div class="w">
 <div class="h"><h1>Albert's List &nbsp;·&nbsp; Daily Script</h1>
-<p>{date_str} &nbsp;·&nbsp; 3 PM PT &nbsp;·&nbsp; {len(articles)} sources &nbsp;·&nbsp; 24h window</p></div>
+<p>{date_str} &nbsp;·&nbsp; 3 PM PT &nbsp;·&nbsp; {len(articles)} sources &nbsp;·&nbsp; 72h window</p></div>
 
 <div class="tc"><div class="l">Thumbnail Preview &nbsp;·&nbsp; 1280×720</div>
 <img src="cid:thumbnail" style="max-width:100%;border-radius:8px;border:1px solid #dde">
